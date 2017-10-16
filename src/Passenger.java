@@ -29,12 +29,32 @@ public class Passenger {
 	
 	public void setPhone(String p) { phone = p; } 
 	
-	// Class Methods-----------
+	// Class Methods------------------------------------------------------------------------
 	
 	// Shows all tickets a passenger has
 	public void showTickets() {
 		for (int i = 0; i < numberOfTickets; i++) {
 			System.out.println("Ticket No. " + myTickets.get(i));
 		}
+	}
+	
+	// cancels the passenger's ticket t
+	public void cancel(Ticket t) {
+		t = null;	
+	}
+	
+	// Finds all flights for an airline on a particular date within 4 hours of a 
+	// particular departure time from a particualr city.
+	public ArrayList<Flight> findFlights(Airline a, String date, double time, String from) {
+		
+	}
+	
+	// Books a ticket for a particular flight (for the passenger)
+	public Ticket bookFlight(Flight f) {
+		
+	}
+	
+	public boolean holdsTicket(Ticket t) {
+		
 	}
 }

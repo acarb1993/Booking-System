@@ -10,4 +10,11 @@ public class Ticket {
 		counter++;
 		ticketNumber = counter;
 	}
+	
+	// Class Methods------
+	
+	// Cancels the ticket
+	public void cancel() {
+		
+	}
 }
