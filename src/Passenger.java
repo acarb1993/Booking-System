@@ -44,7 +44,7 @@ public class Passenger {
 	}
 	
 	// Finds all flights for an airline on a particular date within 4 hours of a 
-	// particular departure time from a particualr city.
+	// particular departure time from a particular city.
 	public ArrayList<Flight> findFlights(Airline a, String date, double time, String from) {
 		
 	}
