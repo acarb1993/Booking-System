@@ -14,6 +14,5 @@ public class Flight {
 		seats = 200;
 		counter = 0;
 		date = "";
-		
 	}
 }

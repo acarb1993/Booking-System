@@ -30,6 +30,8 @@ public class Passenger {
 	public void setPhone(String p) { phone = p; } 
 	
 	// Class Methods-----------
+	
+	// Shows all tickets a passenger has
 	public void showTickets() {
 		for (int i = 0; i < numberOfTickets; i++) {
 			System.out.println("Ticket No. " + myTickets.get(i));
