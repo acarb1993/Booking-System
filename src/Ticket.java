@@ -16,6 +16,10 @@ public class Ticket {
 	
 	public double getTicketPrice() { return myPrice; }
 	
+	//Setter Method-----------------------
+	
+	public void setTicketPrice(double price) { myPrice = price; }
+	
 	// Class Methods------
 	
 	// Cancels the ticket

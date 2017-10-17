@@ -33,18 +33,19 @@ public class Passenger {
 	
 	// Shows all tickets a passenger has
 	public void showTickets() {
-		for (int i = 0; i < numberOfTickets; i++) {
-			System.out.println("Ticket No. " + myTickets.get(i));
+		for (int i = 0; i < myTickets.size(); i++) {
+			System.out.println("Ticket No. " + myTickets.get(i) );
 		}
 	}
 	
 	// cancels the passenger's ticket t
 	public void cancel(Ticket t) {
-		t = null;	
+		numberOfTickets--;
 	}
 	
-	// Finds all flights for an airline on a particular date within 4 hours of a 
-	// particular departure time from a particular city.
+	/* Finds all flights for an airline on a particular date within 4 hours of a 
+	 * particular departure time from a particular city.
+	 */
 	public ArrayList<Flight> findFlights(Airline a, String date, double time, String from) {
 		
 	}

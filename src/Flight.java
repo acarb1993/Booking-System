@@ -11,12 +11,15 @@ public class Flight {
 	private Random r = new Random();
 	
 	// Default Constructor
-	public Flight() {
+	public Flight(double departureTime, int seats, String originAirport, String destination) {
+		this.departureTime = departureTime;
+		this.seats = seats;
+		this.originAirport = originAirport;
+		this.destination = destination;
+		
 		flightNumber = counter;
-		seats = r.nextInt(250 - 150) + 150;
 		filledSeats = 0;
 		counter = 0;
-		date = "";
 	}
 	
 	// Getter Methods-----------------------------------------
@@ -36,6 +39,10 @@ public class Flight {
 	
 	public String getDestination() { return destination; }
 	
+	// Gets a ticket at a particular index
+	public Ticket getTicket(int index) {
+		return tickets.get(index);
+	}
 	
 	public Airline getAirline() { return airline; }
 	
@@ -45,7 +52,7 @@ public class Flight {
 	// to within a 4 hour departure window? 
 	public boolean matches(String d, double t, String from) {
 		if (d.equals(date) ) {
-			if ( (t - departureTime) >= 4 && from.equals(destination) ) {
+			if ( ( (t - departureTime) >= 4) && (from.equals(destination) ) ) {
 				return true;
 			}
 		}
@@ -53,32 +60,39 @@ public class Flight {
 	}
 	
 	// Are there any seats left?
-	public boolean hasSpace() {
-		if ( (filledSeats - seats) == 0) {
-			return false;
+	private boolean hasSpace() {
+		if (seats > 0) {
+			return true;
 		}
-		else return true;
+		else return false;
 	}
 	
 	// Add a newly issued ticket to the flight
-	void addTicket(Ticket t) {
-		t = new Ticket();
-		tickets.add(t);
+	public void addTicket(Ticket t) {	
+		
+		if (hasSpace() ) {
+		    tickets.add(t);
+		    seats--;
+		    filledSeats++;
+		}
+		
+		else System.out.println("Sorry, this flight has reached its maximum seating");
 	}
 	
 	// Does the flight already hold a particular ticket?
-	boolean holdsTicket(Ticket ticket) {
-		
+	public boolean holdsTicket(Ticket ticket) {
+		return true;
 	}
 	
 	// Remove a canceled ticket from the flight
-	void remove(Ticket ticket) {
+	public void remove(Ticket ticket) {
 		
 	}
 	
 	// Use the flight's airline's method to generate the cost of the next ticket
 	// for this flight
-	double getCost() {
-		
+	public double getCost() {
+		double flatPrice = 100;
+		return flatPrice;
 	}
 }
