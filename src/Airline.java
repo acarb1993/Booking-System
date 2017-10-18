@@ -27,6 +27,16 @@ public class Airline {
 		
 	}
 	
+	public void showFlights() {
+		for (int i = 0; i < flights.size(); i++) {
+			System.out.print(getName() + " " + flights.get(i).getFlightNumber()
+					+ flights.get(i).getDate() + " " + flights.get(i).getDepartureTime() 
+					+ " from " + flights.get(i).getOrigin() + " to " + flights.get(i).getDestination() 
+					+ " ticket cost " + flights.get(i).getCost() );
+			System.out.println();
+		}
+	}
+	
 	// Finds all flights for a 4 hour departure window
 	public ArrayList<Flight> findFlights(String date, double time, String origin) {
 		ArrayList<Flight> matchingFlights = new ArrayList<Flight>();
@@ -42,7 +52,10 @@ public class Airline {
 	
 	// Books a passenger on a flight
 	public Ticket book(Passenger p, Flight f) {
-		
+		Ticket t = new Ticket();
+		f.addTicket(t);
+		p.bookFlight(f);
+		return t;
 	}
 	
 	// Gives the cost of a ticket for a particular flight. Devise you own a sensible pricing

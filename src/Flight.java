@@ -8,7 +8,6 @@ public class Flight {
 	private String date, originAirport, destination;
 	private Airline airline;
 	private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-	private Random r = new Random();
 	
 	// Default Constructor
 	public Flight(double departureTime, int seats, String originAirport, String destination) {
@@ -17,6 +16,7 @@ public class Flight {
 		this.originAirport = originAirport;
 		this.destination = destination;
 		
+		date = "10/01/17";
 		flightNumber = counter;
 		filledSeats = 0;
 		counter = 0;

@@ -47,15 +47,22 @@ public class Passenger {
 	 * particular departure time from a particular city.
 	 */
 	public ArrayList<Flight> findFlights(Airline a, String date, double time, String from) {
+		ArrayList<Flight> matchingFlights = new ArrayList<Flight>();
 		
+		a.findFlights(date, time, from);
+		
+		return matchingFlights;
 	}
 	
 	// Books a ticket for a particular flight (for the passenger)
 	public Ticket bookFlight(Flight f) {
-		
+		Ticket t = new Ticket();
+		f.addTicket(t);
+		return t;
 	}
 	
+	// Reports where the passenger holds a particular ticket
 	public boolean holdsTicket(Ticket t) {
-		
+		return true;
 	}
 }
