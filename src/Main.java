@@ -8,21 +8,17 @@ import java.util.Scanner;
  * of October 2017.
  */
 
-
 public class Main {
 	public static void main(String[] args) {
 		Airline airline = new Airline();
-		Random r = new Random();
+		Random randomSeats = new Random();
+		Random randomTime = new Random();
 		Scanner keyboard = new Scanner(System.in);
 		
 		Passenger p = new Passenger("Adam", "West");
 		
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 5; i++) {
 			airline.createFlight(5, 200, "Home", "Not Home");
-		}
-		
-		for (int i = 0; i < 2; i++) {
-			airline.showFlights();
-		}
+		}	
 	}
 }

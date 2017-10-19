@@ -39,14 +39,14 @@ public class Passenger {
 	}
 	
 	// cancels the passenger's ticket t
-	public void cancel(Ticket t) {
+	public void cancel(Ticket t) { // TODO actually cancel the ticket
 		numberOfTickets--;
 	}
 	
 	/* Finds all flights for an airline on a particular date within 4 hours of a 
 	 * particular departure time from a particular city.
 	 */
-	public ArrayList<Flight> findFlights(Airline a, String date, double time, String from) {
+	public ArrayList<Flight> findFlights(Airline a, String date, double time, String from) { // TODO, Put flights in List
 		ArrayList<Flight> matchingFlights = new ArrayList<Flight>();
 		
 		a.findFlights(date, time, from);

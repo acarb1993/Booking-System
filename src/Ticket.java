@@ -23,7 +23,7 @@ public class Ticket {
 	// Class Methods------
 	
 	// Cancels the ticket
-	public void cancel() {
+	public void cancel() { // TODO actually cancel the ticket
 		
 	}
 }

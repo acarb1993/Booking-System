@@ -16,7 +16,7 @@ public class Flight {
 		this.originAirport = originAirport;
 		this.destination = destination;
 		
-		date = "10/01/17";
+		date = "10.1.17";
 		flightNumber = counter;
 		filledSeats = 0;
 		counter = 0;
@@ -45,6 +45,13 @@ public class Flight {
 	}
 	
 	public Airline getAirline() { return airline; }
+	
+	// Setter Methods
+	
+	// Sets the day in October
+	public void setDate(String d) {
+		date = date.substring(0, 3) + d + (date.substring(4, 6) );
+	}
 	
 	// Class Methods---------------------------------------------
 	
@@ -80,12 +87,12 @@ public class Flight {
 	}
 	
 	// Does the flight already hold a particular ticket?
-	public boolean holdsTicket(Ticket ticket) {
+	public boolean holdsTicket(Ticket ticket) { // TODO make a richer return value
 		return true;
 	}
 	
 	// Remove a canceled ticket from the flight
-	public void remove(Ticket ticket) {
+	public void remove(Ticket ticket) { // TODO actually remove a ticket
 		
 	}
 	
