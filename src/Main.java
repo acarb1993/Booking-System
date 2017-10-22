@@ -41,7 +41,7 @@ public class Main {
 			
 		} while (date < 32);
 		
-		airline.showFlights();
+		//airline.showFlights();
 		
 		System.out.println("Ready to book your flights, enter your first name: ");
 		String firstName = keyboard.nextLine();
@@ -75,10 +75,10 @@ public class Main {
 				}
 				
 				else if ( (answer == 'K') || (answer == 'k') ) {
-					System.out.println("Enter the day in October that you want to fly: ");
+					System.out.println("Enter the day in October that you want to fly (In range from 1 - 31): ");
 					String day = keyboard.nextLine();
 					
-					System.out.println("Enter the hour you would like to fly (In range from 1 - 24");
+					System.out.println("Enter the hour you would like to fly (In range from 1 - 24): ");
 					double myHour = keyboard.nextDouble();
 					
 					airline.findFlights(day, myHour, "Kennedy");
@@ -93,6 +93,7 @@ public class Main {
 					System.out.println("Type the number of the flight you wish to book: ");
 					keyboard.nextLine();
 					String flightInput = keyboard.nextLine();
+					
 					
 					System.out.println("Successfully booked ticket!");
 				}

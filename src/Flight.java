@@ -60,11 +60,27 @@ public class Flight {
 	// Does the flight match date d, time t, and originAirport from 
 	// to within a 4 hour departure window? 
 	public boolean matches(String d, double t, String from) {
-		if ( (d.charAt(0) == date.charAt(3) ) ) {
-				return true;	
+		int check = Integer.parseInt(d);
+		
+		if (check < 10) {
+			if ( (d.charAt(0) == date.charAt(3) ) && (date.charAt(4) == '/') ) {
+				if ( (t < departureTime + 4 ) && (departureTime - 4 < t) ) {
+					if ( (from.charAt(0) == originAirport.charAt(0) ) )
+					return true;	
+				}
+			}
 		}
 		
-		else return false;
+		else if (check >= 10) {
+			if ( (d.charAt(0) == date.charAt(3) ) && (d.charAt(1) == date.charAt(4) ) ) {
+				if ( (t < departureTime + 4 ) && (departureTime - 4 < t) ) {
+					if ( (from.charAt(0) == originAirport.charAt(0) ) )
+					return true;	
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 	// Are there any seats left?
