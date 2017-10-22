@@ -36,7 +36,7 @@ public class Passenger {
 		for (int i = 0; i < myTickets.size(); i++) {
 			System.out.println(myTickets.get(i).getMyPassenger() + " booked on " + myTickets.get(i).getMyAirline() + " flight number "
 					+ myTickets.get(i).getMyFlight() + " on " + myTickets.get(i).getMyDate() + " at " 
-					+ myTickets.get(i).getMyTicketTime() + " " + myTickets.get(i).getMyFlightDestination() );
+					+ myTickets.get(i).getMyTicketTime() + ", " + myTickets.get(i).getMyFlightDestination() );
 		}
 	}
 	

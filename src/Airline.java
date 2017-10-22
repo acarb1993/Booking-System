@@ -42,16 +42,16 @@ public class Airline {
 	// Shows all the current flights and their information for this airline
 	public void showFlights() {
 		for (int i = 0; i < flights.size(); i++) {
-			System.out.print(getName() + " " + flights.get(i).getFlightNumber() + " "
-					+ flights.get(i).getDate() + " " + flights.get(i).getDepartureTime() 
-					+ " from " + flights.get(i).getOrigin() + " to " + flights.get(i).getDestination() 
-					+ " ticket cost " + flights.get(i).getCost() );
+			System.out.print(getName() + " " + flights.get(i).getFlightNumber() + " "+ flights.get(i).getDate() + " ");
+			System.out.printf("%.2f", flights.get(i).getDepartureTime() );
+			System.out.print( " from " + flights.get(i).getOrigin() + " to " + flights.get(i).getDestination() + " ticket cost $" + flights.get(i).getCost() );
 			System.out.println();
 		}
 	}
 	
 	// Finds all flights for a 4 hour departure window
 	public ArrayList<Flight> findFlights(String date, double time, String origin) {
+		matchingFlights.clear();
 		for (int i = 0; i < flights.size(); i++) {
 			if (flights.get(i).matches(date, time, origin) ) {
 				matchingFlights.add(flights.get(i) );
@@ -61,12 +61,12 @@ public class Airline {
 		return matchingFlights;
 	}
 	
+	// Shows all the matching flights that the passenger requested
 	public void showMatchingFlights() {
 		for (int i = 0; i < matchingFlights.size(); i++) {
-			System.out.print(getName() + " " + matchingFlights.get(i).getFlightNumber() + " " 
-					+ matchingFlights.get(i).getDate() + " " + matchingFlights.get(i).getDepartureTime() 
-					+ " from " + matchingFlights.get(i).getOrigin() + " to " + matchingFlights.get(i).getDestination() 
-					+ " ticket cost " + matchingFlights.get(i).getCost() );
+			System.out.print(getName() + " " + matchingFlights.get(i).getFlightNumber() + " " + matchingFlights.get(i).getDate() + " ");
+			System.out.printf("%.2f", matchingFlights.get(i).getDepartureTime() );
+			System.out.print(" from " + matchingFlights.get(i).getOrigin() + " to " + matchingFlights.get(i).getDestination() + " ticket cost $" + matchingFlights.get(i).getCost() );
 			System.out.println();
 		}
 	}

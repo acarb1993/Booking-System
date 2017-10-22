@@ -57,7 +57,7 @@ public class Flight {
 	
 	// Class Methods---------------------------------------------
 	
-	// Does the flight match date d, time t, and originAirport from 
+	// Does the flight match date d on that day, time t, and originAirport from 
 	// to within a 4 hour departure window? 
 	public boolean matches(String d, double t, String from) {
 		int check = Integer.parseInt(d);

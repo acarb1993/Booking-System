@@ -11,7 +11,7 @@ public class Ticket {
 		ticketNumber = counter;
 	}
 	
-	// Getter Methods---------------------
+	// Getter Methods-----------------------------------
 	public int getTicketNumber() { return ticketNumber; }
 	
 	public double getTicketPrice() { return myPrice; }
@@ -28,7 +28,7 @@ public class Ticket {
 	
 	public String getMyFlightDestination() { return myFlightDestination; }
 	
-	//Setter Method-----------------------
+	//Setter Method----------------------------------------------------------
 	public void setMyAirline(String airlineName) { myAirline = airlineName; }
 	
 	public void setMyPassenger(String firstName, String lastName) { myPassenger = firstName + " " + lastName; }

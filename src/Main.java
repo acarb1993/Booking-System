@@ -10,37 +10,75 @@ import java.util.ArrayList;
  */
 
 public class Main {
-	public static void main(String[] args) {
-		Airline airline = new Airline();
-		
+	
+	// Generates the flights for the airline taking an Airline as a parameter
+	public static Airline generateFlights(Airline airline) {
 		Random randomSeats = new Random();
 		Random randomMinute = new Random();
 		
-		Scanner keyboard = new Scanner(System.in);
-		
 		double hour = 0, minute = 0;
-		int seats = 0, date = 1, index = 0;
+		double kenTimes[] = new double[24];
+		double laguTimes[] = new double[24];
 		
-		
-		do {
+		// Generates the time for the Kennedy flights
+		for (int i = 0; i < kenTimes.length; i++) {
+			if (hour  > 24) { hour = 0; }
 			hour++;
-			
 			minute = randomMinute.nextInt(60) + 1;
 			minute /= 100.00;
 			
+			double flightTime = hour + minute;
+			kenTimes[i] = flightTime;
+		
+		}
+		
+		// Generates the time for the Laguardia flights
+		for (int i = 0; i < laguTimes.length; i++) {
+			if (hour > 24) { hour = 0; }
+			
+			hour++;
+			minute = randomMinute.nextInt(60) + 1;
+			minute /= 100.00;
+			
+			double flightTime = hour + minute;
+			laguTimes[i] = flightTime;
+			
+		}
+		
+		int seats = 0, date = 1, index = 0, timeIndex = 0;
+		
+		// Generates the seating and the flights themselves
+		do {
 			seats = randomSeats.nextInt(300) + 150;
 			
-			airline.createFlight( (hour + minute), seats, "Kennedy", "Laguarida");
+			airline.createFlight( (kenTimes[timeIndex]), seats, "Kennedy", "Laguarida");
 			airline.getFlight(index).setDate(date);
-			
-			if (hour >= 24) {
-				hour = 0;
-				date++;
-			} 
 			
 			index++;
 			
+			airline.createFlight( (laguTimes[timeIndex]), seats, "Laguardia", "Kennedy");
+			airline.getFlight(index).setDate(date);
+			
+			index++;
+			timeIndex++;
+			
+			if (timeIndex == kenTimes.length) { 
+				timeIndex = 0;
+				date++;
+			}
+			
 		} while (date < 32);
+		
+		return airline;
+	}
+
+	
+	public static void main(String[] args) {
+		Airline airline = new Airline();
+		Scanner keyboard = new Scanner(System.in);
+		
+		generateFlights(airline);
+		//airline.showFlights();
 		
 		System.out.println("Ready to book your flights, enter your first name: ");
 		String firstName = keyboard.nextLine();
@@ -53,7 +91,7 @@ public class Main {
 		String address = keyboard.nextLine();
 		p.setAddress(address);
 		
-		System.out.println("Please enter your phone number ");
+		System.out.println("Please enter your phone number: ");
 		String phone = keyboard.nextLine();
 		p.setPhone(phone);
 		
@@ -106,7 +144,32 @@ public class Main {
 				
 				// Show Laguardia to Kennedy Flights
 				else if ( (answer == 'L') || (answer == 'l') ) {
+					System.out.println("Enter the day in October that you want to fly (In range from 1 - 31): ");
+					String day = keyboard.nextLine();
 					
+					System.out.println("Enter the hour you would like to fly (In range from 1 - 24): ");
+					double myHour = keyboard.nextDouble();
+					
+					airline.findFlights(day, myHour, "Laguardia");
+					ArrayList<Flight> myMatchingFlights = new ArrayList<Flight>();
+					for (int i = 0; i < airline.getMatchingFlights().size(); i++) {
+						myMatchingFlights.add(airline.getMatchingFlights().get(i) );
+					}
+					
+					System.out.println("Here are the available flights: ");
+					airline.showMatchingFlights();
+					
+					System.out.println("Type the number of the flight you wish to book: ");
+					keyboard.nextLine();
+					int flightInput = keyboard.nextInt();
+					
+					for (int i = 0; i <myMatchingFlights.size(); i++) {
+						if (flightInput == myMatchingFlights.get(i).getFlightNumber() ) {
+							p.bookFlight(p.getFirstName(), p.getLastName(), airline.getName(), myMatchingFlights.get(i) );
+							System.out.println("Successfully booked ticket!");
+							keyboard.nextLine();
+						}
+					}
 				}
 				
 				else System.out.println("Error, invalid choice");
@@ -114,8 +177,11 @@ public class Main {
 			
 			// Show the tickets and exit
 			else if ( (answer == 'N') || (answer == 'n') ) {
-				System.out.println("Here are the tickets you have booked: ");
+				System.out.println("Thank you for booking with " + airline.getName() );
+				System.out.println("Here is a list of your bookings: ");
 				p.showTickets();
+				keyboard.close();
+				System.exit(0);
 			}
 			
 			else System.out.println("Error, invalid choice");	
