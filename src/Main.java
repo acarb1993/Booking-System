@@ -37,11 +37,10 @@ public class Main {
 				hour = 0;
 				date++;
 			} 
+			
 			index++;
 			
 		} while (date < 32);
-		
-		//airline.showFlights();
 		
 		System.out.println("Ready to book your flights, enter your first name: ");
 		String firstName = keyboard.nextLine();
@@ -70,10 +69,12 @@ public class Main {
 				input = keyboard.nextLine();
 				answer = input.charAt(0);
 				
+				// Cancel a flight
 				if ( (answer == 'C') || (answer == 'c') ) {
-					// Cancel a flight
+		
 				}
 				
+				// Show Kennedy to Laguardia flights
 				else if ( (answer == 'K') || (answer == 'k') ) {
 					System.out.println("Enter the day in October that you want to fly (In range from 1 - 31): ");
 					String day = keyboard.nextLine();
@@ -92,28 +93,33 @@ public class Main {
 					
 					System.out.println("Type the number of the flight you wish to book: ");
 					keyboard.nextLine();
-					String flightInput = keyboard.nextLine();
+					int flightInput = keyboard.nextInt();
 					
-					
-					System.out.println("Successfully booked ticket!");
+					for (int i = 0; i <myMatchingFlights.size(); i++) {
+						if (flightInput == myMatchingFlights.get(i).getFlightNumber() ) {
+							p.bookFlight(p.getFirstName(), p.getLastName(), airline.getName(), myMatchingFlights.get(i) );
+							System.out.println("Successfully booked ticket!");
+							keyboard.nextLine();
+						}
+					}
 				}
 				
+				// Show Laguardia to Kennedy Flights
 				else if ( (answer == 'L') || (answer == 'l') ) {
-					// Show Laguardia to Kennedy Flights
+					
 				}
 				
 				else System.out.println("Error, invalid choice");
 			}
 			
+			// Show the tickets and exit
 			else if ( (answer == 'N') || (answer == 'n') ) {
-				// Show the tickets and exit
+				System.out.println("Here are the tickets you have booked: ");
+				p.showTickets();
 			}
 			
-			else System.out.println("Error, invalid choice");
-			
+			else System.out.println("Error, invalid choice");	
 			
 		}
-		
-		//airline.showFlights();
 	}
 }

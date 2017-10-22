@@ -75,7 +75,7 @@ public class Airline {
 	public Ticket book(Passenger p, Flight f) {
 		Ticket t = new Ticket();
 		f.addTicket(t);
-		p.bookFlight(f);
+		p.bookFlight(p.getFirstName(), p.getLastName(), name, f);
 		return t;
 	}
 	

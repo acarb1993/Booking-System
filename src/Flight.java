@@ -101,7 +101,7 @@ public class Flight {
 		    filledSeats++;
 		}
 		
-		else System.out.println("Sorry, this flight has reached its maximum seating");
+		else System.out.println("Sorry, this flight has reached its maximum seating, please choose another flight");
 	}
 	
 	// Does the flight already hold a particular ticket?

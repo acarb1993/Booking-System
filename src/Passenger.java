@@ -34,7 +34,9 @@ public class Passenger {
 	// Shows all tickets a passenger has
 	public void showTickets() {
 		for (int i = 0; i < myTickets.size(); i++) {
-			System.out.println("Ticket No. " + myTickets.get(i) );
+			System.out.println(myTickets.get(i).getMyPassenger() + " booked on " + myTickets.get(i).getMyAirline() + " flight number "
+					+ myTickets.get(i).getMyFlight() + " on " + myTickets.get(i).getMyDate() + " at " 
+					+ myTickets.get(i).getMyTicketTime() + " " + myTickets.get(i).getMyFlightDestination() );
 		}
 	}
 	
@@ -55,9 +57,19 @@ public class Passenger {
 	}
 	
 	// Books a ticket for a particular flight (for the passenger)
-	public Ticket bookFlight(Flight f) {
+	public Ticket bookFlight(String firstName, String lastName, String airline, Flight f) {
+		
 		Ticket t = new Ticket();
 		f.addTicket(t);
+		myTickets.add(t);
+		
+		t.setMyPassenger(firstName, lastName);
+		t.setMyAirline(airline);
+		t.setMyFlight(f.getFlightNumber());
+		t.setMyDate(f.getDate() );
+		t.setMyTicketTime(f.getDepartureTime() );
+		t.setMyFlightDestination(f.getOrigin(), f.getDestination());
+		
 		return t;
 	}
 	
