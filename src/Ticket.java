@@ -3,7 +3,7 @@ public class Ticket {
 	private int ticketNumber;
 	private double myPrice;
 	private String myAirline, myPassenger, myFlight;
-	static private int counter; // Creates a new ticket number every time a ticket is initialized
+	static private int counter = 0; // Creates a new ticket number every time a ticket is initialized
 	
 	// Default Constructor
 	public Ticket() {

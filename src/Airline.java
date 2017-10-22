@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Airline {
 	private String name; // Name of the airline
 	private ArrayList<Flight> flights = new ArrayList<Flight>(); // Information about all of the flights
+	private ArrayList<Flight> matchingFlights = new ArrayList<Flight>(); // Has all the flights from the function findFlights()
 	
 	// Default Constructor
 	public Airline() {
@@ -11,6 +12,17 @@ public class Airline {
 	
 	// Getter functions--------------------
 	public String getName() { return name; }
+	
+	public Flight getFlight(int flightNumber) {
+		return flights.get(flightNumber);
+	}
+	
+	public ArrayList<Flight> getMatchingFlights() {
+		return matchingFlights;
+	}
+	
+	// Setter Functions---------------------
+
 	
 	// Class Methods------------------------
 	
@@ -27,9 +39,10 @@ public class Airline {
 		
 	}
 	
+	// Shows all the current flights and their information for this airline
 	public void showFlights() {
 		for (int i = 0; i < flights.size(); i++) {
-			System.out.print(getName() + " " + flights.get(i).getFlightNumber()
+			System.out.print(getName() + " " + flights.get(i).getFlightNumber() + " "
 					+ flights.get(i).getDate() + " " + flights.get(i).getDepartureTime() 
 					+ " from " + flights.get(i).getOrigin() + " to " + flights.get(i).getDestination() 
 					+ " ticket cost " + flights.get(i).getCost() );
@@ -39,8 +52,6 @@ public class Airline {
 	
 	// Finds all flights for a 4 hour departure window
 	public ArrayList<Flight> findFlights(String date, double time, String origin) {
-		ArrayList<Flight> matchingFlights = new ArrayList<Flight>();
-		
 		for (int i = 0; i < flights.size(); i++) {
 			if (flights.get(i).matches(date, time, origin) ) {
 				matchingFlights.add(flights.get(i) );
@@ -48,6 +59,16 @@ public class Airline {
 		}
 		
 		return matchingFlights;
+	}
+	
+	public void showMatchingFlights() {
+		for (int i = 0; i < matchingFlights.size(); i++) {
+			System.out.print(getName() + " " + matchingFlights.get(i).getFlightNumber() + " " 
+					+ matchingFlights.get(i).getDate() + " " + matchingFlights.get(i).getDepartureTime() 
+					+ " from " + matchingFlights.get(i).getOrigin() + " to " + matchingFlights.get(i).getDestination() 
+					+ " ticket cost " + matchingFlights.get(i).getCost() );
+			System.out.println();
+		}
 	}
 	
 	// Books a passenger on a flight
@@ -58,7 +79,7 @@ public class Airline {
 		return t;
 	}
 	
-	// Gives the cost of a ticket for a particular flight. Devise you own a sensible pricing
+	// Gives the cost of a ticket for a particular flight. Devise your own sensible pricing
 	// policy so that tickets get more expensive as a flight fills up.
 	public double cost(Flight f) {
 		return f.getCost() + f.getFilledSeats();

@@ -3,8 +3,8 @@ import java.util.Random;
 
 public class Flight {
 	private int flightNumber, seats, filledSeats;
-	private double flightLength, departureTime;
-	private static int counter; // Creates a new flight number, when a flight is initialized
+	private double flightLength, departureTime, flatPrice;
+	private static int counter = 0; // Creates a new flight number, when a flight is initialized
 	private String date, originAirport, destination;
 	private Airline airline;
 	private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
@@ -16,10 +16,11 @@ public class Flight {
 		this.originAirport = originAirport;
 		this.destination = destination;
 		
-		date = "10.1.17";
+		date = "10/1/17";
+		counter++;
 		flightNumber = counter;
 		filledSeats = 0;
-		counter = 0;
+		flatPrice = 100;
 	}
 	
 	// Getter Methods-----------------------------------------
@@ -46,11 +47,12 @@ public class Flight {
 	
 	public Airline getAirline() { return airline; }
 	
-	// Setter Methods
+	// Setter Methods--------------------------------------------------
 	
 	// Sets the day in October
-	public void setDate(String d) {
-		date = date.substring(0, 3) + d + (date.substring(4, 6) );
+	public void setDate(int d) {
+		String newDate = Integer.toString(d);
+		date = date.substring(0, 3) + newDate + (date.substring(4, 7) );
 	}
 	
 	// Class Methods---------------------------------------------
@@ -58,12 +60,11 @@ public class Flight {
 	// Does the flight match date d, time t, and originAirport from 
 	// to within a 4 hour departure window? 
 	public boolean matches(String d, double t, String from) {
-		if (d.equals(date) ) {
-			if ( ( (t - departureTime) >= 4) && (from.equals(destination) ) ) {
-				return true;
-			}
+		if ( (d.charAt(0) == date.charAt(3) ) ) {
+				return true;	
 		}
-		return false;
+		
+		else return false;
 	}
 	
 	// Are there any seats left?
@@ -71,6 +72,7 @@ public class Flight {
 		if (seats > 0) {
 			return true;
 		}
+		
 		else return false;
 	}
 	
@@ -99,7 +101,6 @@ public class Flight {
 	// Use the flight's airline's method to generate the cost of the next ticket
 	// for this flight
 	public double getCost() {
-		double flatPrice = 100;
 		return flatPrice;
 	}
 }
