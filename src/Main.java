@@ -109,7 +109,15 @@ public class Main {
 				
 				// Cancel a flight
 				if ( (answer == 'C') || (answer == 'c') ) {
-		
+					System.out.println("Here are the flights you have booked"); 
+					p.showTickets();
+					
+					System.out.println("Which ticket would you like to cancel?");
+					int ticketNumber = keyboard.nextInt();
+					Ticket ticket = new Ticket(ticketNumber);
+					for (int i = 0; i < p.getNumberOfTickets(); i++) {
+						
+					}
 				}
 				
 				// Show Kennedy to Laguardia flights
@@ -133,7 +141,7 @@ public class Main {
 					keyboard.nextLine();
 					int flightInput = keyboard.nextInt();
 					
-					for (int i = 0; i <myMatchingFlights.size(); i++) {
+					for (int i = 0; i < myMatchingFlights.size(); i++) {
 						if (flightInput == myMatchingFlights.get(i).getFlightNumber() ) {
 							p.bookFlight(p.getFirstName(), p.getLastName(), airline.getName(), myMatchingFlights.get(i) );
 							System.out.println("Successfully booked ticket!");
@@ -163,7 +171,7 @@ public class Main {
 					keyboard.nextLine();
 					int flightInput = keyboard.nextInt();
 					
-					for (int i = 0; i <myMatchingFlights.size(); i++) {
+					for (int i = 0; i < myMatchingFlights.size(); i++) {
 						if (flightInput == myMatchingFlights.get(i).getFlightNumber() ) {
 							p.bookFlight(p.getFirstName(), p.getLastName(), airline.getName(), myMatchingFlights.get(i) );
 							System.out.println("Successfully booked ticket!");

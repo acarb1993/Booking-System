@@ -111,7 +111,9 @@ public class Flight {
 	
 	// Remove a canceled ticket from the flight
 	public void remove(Ticket ticket) { // TODO actually remove a ticket
-		
+		for (int i = 0; i < tickets.size(); i++) {
+			if (ticket.getTicketNumber() == tickets.get(i).getTicketNumber() ) tickets.remove(i);
+		}
 	}
 	
 	// Use the flight's airline's method to generate the cost of the next ticket

@@ -11,6 +11,10 @@ public class Ticket {
 		ticketNumber = counter;
 	}
 	
+	public Ticket(int ticketNumber) {
+		this.ticketNumber = ticketNumber;
+	}
+	
 	// Getter Methods-----------------------------------
 	public int getTicketNumber() { return ticketNumber; }
 	
@@ -47,6 +51,6 @@ public class Ticket {
 	
 	// Cancels the ticket
 	public void cancel() { // TODO actually cancel the ticket
-		
+		ticketNumber = 0;
 	}
 }

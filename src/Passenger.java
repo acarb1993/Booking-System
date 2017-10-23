@@ -34,14 +34,17 @@ public class Passenger {
 	// Shows all tickets a passenger has
 	public void showTickets() {
 		for (int i = 0; i < myTickets.size(); i++) {
-			System.out.println(myTickets.get(i).getMyPassenger() + " booked on " + myTickets.get(i).getMyAirline() + " flight number "
+			System.out.println("Ticket Number " + myTickets.get(i).getTicketNumber() + " " + myTickets.get(i).getMyPassenger() + " booked on " + myTickets.get(i).getMyAirline() + ", flight number "
 					+ myTickets.get(i).getMyFlight() + " on " + myTickets.get(i).getMyDate() + " at " 
 					+ myTickets.get(i).getMyTicketTime() + ", " + myTickets.get(i).getMyFlightDestination() );
 		}
 	}
 	
-	// cancels the passenger's ticket t
+	// Cancels the passenger's ticket t
 	public void cancel(Ticket t) { // TODO actually cancel the ticket
+		for (int i = 0; i < myTickets.size(); i++) {
+			if (t.getTicketNumber() == myTickets.get(i).getTicketNumber() ) myTickets.remove(i);
+		}
 		numberOfTickets--;
 	}
 	
@@ -74,7 +77,10 @@ public class Passenger {
 	}
 	
 	// Reports where the passenger holds a particular ticket
-	public boolean holdsTicket(Ticket t) {
-		return true;
+	public boolean holdsTicket(Ticket t) { 
+		for (int i = 0; i < myTickets.size(); i++) {
+			if (t.getTicketNumber() == myTickets.get(i).getTicketNumber() ) return true;
+		}
+		return false;
 	}
 }
