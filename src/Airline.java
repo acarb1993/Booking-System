@@ -27,7 +27,7 @@ public class Airline {
 	// Class Methods------------------------
 	
 	// Cancels a ticket
-	public void cancel(Ticket t) { // TODO find the actual ticket being canceled
+	public void cancel(Ticket t) { 
 		flights.remove(t);
 	}
 	
@@ -35,8 +35,8 @@ public class Airline {
 	 * passenger has been credited how much money since in this simulation
 	 * bank balances are not tracked for passengers
 	 */ 
-	public void issueRefund(Ticket t) { // TODO write the message and the amount the passenger gets back
-		
+	public void issueRefund(Ticket t) { // TODO include the passengers name
+		System.out.println(" has been refunded " + t.getTicketPrice() );
 	}
 	
 	// Shows all the current flights and their information for this airline

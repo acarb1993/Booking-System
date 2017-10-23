@@ -84,7 +84,7 @@ public class Flight {
 	}
 	
 	// Are there any seats left?
-	private boolean hasSpace() {
+	public boolean hasSpace() {
 		if (seats > 0) {
 			return true;
 		}
@@ -119,6 +119,6 @@ public class Flight {
 	// Use the flight's airline's method to generate the cost of the next ticket
 	// for this flight
 	public double getCost() {
-		return flatPrice;
+		return flatPrice + (filledSeats + 20);
 	}
 }

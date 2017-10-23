@@ -71,6 +71,18 @@ public class Main {
 		
 		return airline;
 	}
+	
+	public static void generatePassengers(Airline airline) {
+		ArrayList<Passenger> flightPassengers = new ArrayList<Passenger>();
+		
+		for (int i = 0; i < 1000; i++) {
+			Passenger dummy = new Passenger("Bobby", "Singer");
+			flightPassengers.add(dummy);
+			if (airline.getFlight(i).hasSpace() ) {
+				dummy.bookFlight("Bobby", "Singer", airline.getName(), airline.getFlight(i) );
+			}
+		}
+	}
 
 	
 	public static void main(String[] args) {
@@ -78,7 +90,9 @@ public class Main {
 		Scanner keyboard = new Scanner(System.in);
 		
 		generateFlights(airline);
-		//airline.showFlights();
+		generatePassengers(airline);
+		
+		airline.showFlights();
 		
 		System.out.println("Ready to book your flights, enter your first name: ");
 		String firstName = keyboard.nextLine();
@@ -115,9 +129,9 @@ public class Main {
 					System.out.println("Which ticket would you like to cancel?");
 					int ticketNumber = keyboard.nextInt();
 					Ticket ticket = new Ticket(ticketNumber);
-					for (int i = 0; i < p.getNumberOfTickets(); i++) {
-						
-					}
+					p.cancel(ticket);
+					System.out.println("Ticket successfuly cancled!");
+					keyboard.nextLine();
 				}
 				
 				// Show Kennedy to Laguardia flights
