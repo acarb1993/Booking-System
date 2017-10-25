@@ -82,7 +82,7 @@ public class Airline {
 	// Gives the cost of a ticket for a particular flight. Devise your own sensible pricing
 	// policy so that tickets get more expensive as a flight fills up.
 	public double cost(Flight f) {
-		return f.getCost() + f.getFilledSeats();
+		return f.getCost();
 	}
 	
 	// Creates a new flight for the Airline and makes sure that this flight operates every day.

@@ -28,8 +28,7 @@ public class Main {
 			minute /= 100.00;
 			
 			double flightTime = hour + minute;
-			kenTimes[i] = flightTime;
-		
+			kenTimes[i] = flightTime;	
 		}
 		
 		// Generates the time for the Laguardia flights
@@ -42,7 +41,6 @@ public class Main {
 			
 			double flightTime = hour + minute;
 			laguTimes[i] = flightTime;
-			
 		}
 		
 		int seats = 0, date = 1, index = 0, timeIndex = 0;
@@ -72,14 +70,19 @@ public class Main {
 		return airline;
 	}
 	
-	public static void generatePassengers(Airline airline) {
+	public static void generatePassengers(Airline airline) { // TODO finish passenger generation
 		ArrayList<Passenger> flightPassengers = new ArrayList<Passenger>();
+		
+		Random randomHour = new Random();
+		Random randomMinute = new Random();
+		Random randomDate = new Random();
+		
 		
 		for (int i = 0; i < 1000; i++) {
 			Passenger dummy = new Passenger("Bobby", "Singer");
 			flightPassengers.add(dummy);
 			if (airline.getFlight(i).hasSpace() ) {
-				dummy.bookFlight("Bobby", "Singer", airline.getName(), airline.getFlight(i) );
+
 			}
 		}
 	}
@@ -121,7 +124,7 @@ public class Main {
 				input = keyboard.nextLine();
 				answer = input.charAt(0);
 				
-				// Cancel a flight
+				// Cancels a flight for the user
 				if ( (answer == 'C') || (answer == 'c') ) {
 					System.out.println("Here are the flights you have booked"); 
 					p.showTickets();
@@ -134,7 +137,7 @@ public class Main {
 					keyboard.nextLine();
 				}
 				
-				// Show Kennedy to Laguardia flights
+				// Asks the user to find the flight they desire from Laguardia to Kennedy
 				else if ( (answer == 'K') || (answer == 'k') ) {
 					System.out.println("Enter the day in October that you want to fly (In range from 1 - 31): ");
 					String day = keyboard.nextLine();
@@ -164,7 +167,7 @@ public class Main {
 					}
 				}
 				
-				// Show Laguardia to Kennedy Flights
+				// Asks the user to find the flight they desire from Laguardia to Kennedy
 				else if ( (answer == 'L') || (answer == 'l') ) {
 					System.out.println("Enter the day in October that you want to fly (In range from 1 - 31): ");
 					String day = keyboard.nextLine();
@@ -197,7 +200,7 @@ public class Main {
 				else System.out.println("Error, invalid choice");
 			}
 			
-			// Show the tickets and exit
+			// Shows the tickets and exit
 			else if ( (answer == 'N') || (answer == 'n') ) {
 				System.out.println("Thank you for booking with " + airline.getName() );
 				System.out.println("Here is a list of your bookings: ");
@@ -206,7 +209,7 @@ public class Main {
 				System.exit(0);
 			}
 			
-			else System.out.println("Error, invalid choice");	
+			else System.out.println("Error, invalid choice, please try again.");	
 			
 		}
 	}

@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Flight {
 	private int flightNumber, seats, filledSeats;
-	private double flightLength, departureTime, flatPrice;
+	private double flightLength, departureTime, price;
 	private static int counter = 0; // Creates a new flight number, when a flight is initialized
 	private String date, originAirport, destination;
 	private Airline airline;
@@ -20,7 +20,7 @@ public class Flight {
 		counter++;
 		flightNumber = counter;
 		filledSeats = 0;
-		flatPrice = 100;
+		price = 100;
 	}
 	
 	// Getter Methods-----------------------------------------
@@ -99,6 +99,7 @@ public class Flight {
 		    tickets.add(t);
 		    seats--;
 		    filledSeats++;
+		    price += 5;
 		}
 		
 		else System.out.println("Sorry, this flight has reached its maximum seating, please choose another flight");
@@ -110,15 +111,18 @@ public class Flight {
 	}
 	
 	// Remove a canceled ticket from the flight
-	public void remove(Ticket ticket) { // TODO actually remove a ticket
+	public void remove(Ticket ticket) { 
 		for (int i = 0; i < tickets.size(); i++) {
-			if (ticket.getTicketNumber() == tickets.get(i).getTicketNumber() ) tickets.remove(i);
+			if (ticket.getTicketNumber() == tickets.get(i).getTicketNumber() ) {
+				tickets.remove(i);
+				price -= 5;
+			}
 		}
 	}
 	
 	// Use the flight's airline's method to generate the cost of the next ticket
 	// for this flight
 	public double getCost() {
-		return flatPrice + (filledSeats + 20);
+		return price;
 	}
 }
