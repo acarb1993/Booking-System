@@ -16,30 +16,31 @@ public class Main {
 		Random randomSeats = new Random();
 		Random randomMinute = new Random();
 		
-		double hour = 0, minute = 0;
-		double kenTimes[] = new double[24];
-		double laguTimes[] = new double[24];
+		double kenHour = 5, laguHour = 5, minute = 0;
+		double kenTimes[] = new double[16];
+		double laguTimes[] = new double[16];
 		
 		// Generates the time for the Kennedy flights
 		for (int i = 0; i < kenTimes.length; i++) {
-			if (hour  > 24) { hour = 0; }
-			hour++;
+			if (kenHour > 22) { kenHour = 5; }
+			
+			kenHour++;
 			minute = randomMinute.nextInt(60) + 1;
 			minute /= 100.00;
 			
-			double flightTime = hour + minute;
+			double flightTime = kenHour + minute;
 			kenTimes[i] = flightTime;	
 		}
 		
 		// Generates the time for the Laguardia flights
 		for (int i = 0; i < laguTimes.length; i++) {
-			if (hour > 24) { hour = 0; }
+			if (laguHour > 22) { laguHour = 5; }
 			
-			hour++;
+			laguHour++;
 			minute = randomMinute.nextInt(60) + 1;
 			minute /= 100.00;
 			
-			double flightTime = hour + minute;
+			double flightTime = laguHour + minute;
 			laguTimes[i] = flightTime;
 		}
 		
@@ -78,13 +79,13 @@ public class Main {
 		Random randomDate = new Random();
 		
 		
-		for (int i = 0; i < 1000; i++) {
+		/*for (int i = 0; i < 1000; i++) {
 			Passenger dummy = new Passenger("Bobby", "Singer");
 			flightPassengers.add(dummy);
 			if (airline.getFlight(i).hasSpace() ) {
 
 			}
-		}
+		}*/
 	}
 
 	
