@@ -6,9 +6,7 @@ public class Airline {
 	private ArrayList<Flight> matchingFlights = new ArrayList<Flight>(); // Has all the flights from the function findFlights()
 	
 	// Default Constructor
-	public Airline() {
-		name = "Imperial Airlines";
-	}
+	public Airline() { name = "Imperial Airlines"; }
 	
 	// Getter functions--------------------
 	public String getName() { return name; }
@@ -41,7 +39,7 @@ public class Airline {
 	public void showFlights() {
 		for (int i = 0; i < flights.size(); i++) {
 			System.out.print(getName() + " " + flights.get(i).getFlightNumber() + " "+ flights.get(i).getDate() + " ");
-			System.out.printf("%.2f", flights.get(i).getDepartureTime() );
+			System.out.printf("%.02f", flights.get(i).getDepartureTime() );
 			System.out.print( " from " + flights.get(i).getOrigin() + " to " + flights.get(i).getDestination() + " ticket cost $" + flights.get(i).getCost() );
 			System.out.println();
 		}

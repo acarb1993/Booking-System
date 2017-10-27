@@ -25,7 +25,7 @@ public class Main {
 			if (kenHour > 22) { kenHour = 5; }
 			
 			kenHour++;
-			minute = randomMinute.nextInt(60) + 1;
+			minute = randomMinute.nextInt(59) + 1;
 			minute /= 100.00;
 			
 			double flightTime = kenHour + minute;
@@ -98,7 +98,6 @@ public class Main {
 		}
 	}
 
-	
 	public static void main(String[] args) {
 		Airline airline = new Airline();
 		Scanner keyboard = new Scanner(System.in);
@@ -106,7 +105,7 @@ public class Main {
 		generateFlights(airline);
 		generatePassengers(airline);
 		
-		//airline.showFlights();
+		//airline.showFlights(); //Uncomment to show all fights
 		
 		System.out.println("Ready to book your flights, enter your first name: ");
 		String firstName = keyboard.nextLine();

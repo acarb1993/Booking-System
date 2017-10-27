@@ -24,9 +24,7 @@ public class Passenger {
 	
 	public int getNumberOfTickets() { return numberOfTickets; }
 	
-	public Ticket getTicket(int index) {
-		return myTickets.get(index - 1);
-	}
+	public Ticket getTicket(int index) { return myTickets.get(index - 1); }
 		
 	// Setter Functions------------------------------
 	public void setAddress(String a) { address = a; }
@@ -38,11 +36,11 @@ public class Passenger {
 	// Shows all tickets a passenger has
 	public void showTickets() {
 		for (int i = 0; i < myTickets.size(); i++) {
-			System.out.println( (i + 1) + " " + myTickets.get(i).getMyPassenger() 
-					+ " booked on " + myTickets.get(i).getMyAirline() + ", flight number "
-					+ myTickets.get(i).getMyFlight() + " on " + myTickets.get(i).getMyDate() + " at " 
-					+ myTickets.get(i).getMyTicketTime() + ", " + myTickets.get(i).getMyFlightDestination() 
-					+ " cost $" + myTickets.get(i).getTicketPrice() );
+			System.out.print( (i + 1) + " " + myTickets.get(i).getMyPassenger() 
+					+ " booked on " + myTickets.get(i).getMyAirline() + ", flight number "+ myTickets.get(i).getMyFlight() + " on " + myTickets.get(i).getMyDate() + " at ");
+					System.out.printf("%.02f", myTickets.get(i).getMyTicketTime() ); 
+					System.out.print(", " + myTickets.get(i).getMyFlightDestination() + " cost $" + myTickets.get(i).getTicketPrice() );
+					System.out.println();
 		}
 	}
 	
@@ -72,7 +70,7 @@ public class Passenger {
 	public Ticket bookFlight(String firstName, String lastName, String airline, Flight f) {
 		
 		Ticket t = new Ticket(f.getCost(), f.getDepartureTime(), airline, (firstName +  " " + lastName), 
-				f.getFlightNumber(), f.getDate()," from " + f.getOrigin() + " to " + f.getDestination() );
+				f.getFlightNumber(), f.getDate(),"from " + f.getOrigin() + " to " + f.getDestination() );
 		
 		f.addTicket(t);
 		myTickets.add(t);

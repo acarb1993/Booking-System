@@ -57,7 +57,7 @@ public class Ticket {
 	
 	public void setMyTicketTime(double ticketTime) { myTicketTime = ticketTime; } 
 	
-	public void setMyFlightDestination(String origin, String from) { myFlightDestination = origin + " to " + from; }
+	public void setMyFlightDestination(String origin, String to) { myFlightDestination = "from " + origin + " to " + to; }
 	
 	// Class Methods------
 	
