@@ -13,13 +13,11 @@ public class Airline {
 	// Getter functions--------------------
 	public String getName() { return name; }
 	
-	public Flight getFlight(int flightNumber) {
-		return flights.get(flightNumber);
-	}
+	public Flight getFlight(int flightNumber) { return flights.get(flightNumber); }
 	
-	public ArrayList<Flight> getMatchingFlights() {
-		return matchingFlights;
-	}
+	public ArrayList<Flight> getMatchingFlights() { return matchingFlights; }
+	
+	public int getNumberOfFlights() { return flights.size(); }
 	
 	// Setter Functions---------------------
 
@@ -28,16 +26,16 @@ public class Airline {
 	
 	// Cancels a ticket
 	public void cancel(Ticket t) { 
-		flights.remove(t);
+		int flightNum = Integer.parseInt(t.getMyFlight() );
+		System.out.println(t.getMyPassenger() + " has been refunded $" + t.getTicketPrice() );
+		flights.get(flightNum).remove(t);
 	}
 	
 	/* Issues a refund -- it just prints a message to the screen about which
 	 * passenger has been credited how much money since in this simulation
 	 * bank balances are not tracked for passengers
 	 */ 
-	public void issueRefund(Ticket t) { // TODO include the passengers name
-		System.out.println(" has been refunded " + t.getTicketPrice() );
-	}
+	public void issueRefund(Ticket t) { System.out.println(t.getMyPassenger() + " has been refunded $" + t.getTicketPrice() ); }
 	
 	// Shows all the current flights and their information for this airline
 	public void showFlights() {
@@ -81,9 +79,7 @@ public class Airline {
 	
 	// Gives the cost of a ticket for a particular flight. Devise your own sensible pricing
 	// policy so that tickets get more expensive as a flight fills up.
-	public double cost(Flight f) {
-		return f.getCost();
-	}
+	public double cost(Flight f) { return f.getCost(); }
 	
 	// Creates a new flight for the Airline and makes sure that this flight operates every day.
 	public void createFlight(double time, int numSeats, String from, String to) {

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Flight {
 	private int flightNumber, seats, filledSeats;
@@ -40,10 +39,10 @@ public class Flight {
 	
 	public String getDestination() { return destination; }
 	
+	public ArrayList<Ticket> getTickets() { return tickets; }
+	
 	// Gets a ticket at a particular index
-	public Ticket getTicket(int index) {
-		return tickets.get(index);
-	}
+	public Ticket getTicket(int index) { return tickets.get(index); }
 	
 	public Airline getAirline() { return airline; }
 	
@@ -63,7 +62,7 @@ public class Flight {
 		int check = Integer.parseInt(d);
 		
 		if (check < 10) {
-			if ( (d.charAt(0) == date.charAt(3) ) && (date.charAt(4) == '/') ) {
+			if ( (d.charAt(0) == date.charAt(3) ) && (date.charAt(4) == '/') && (t < departureTime + 4 ) && (departureTime - 4 < t) && (from.charAt(0) == originAirport.charAt(0) )) {
 				if ( (t < departureTime + 4 ) && (departureTime - 4 < t) ) {
 					if ( (from.charAt(0) == originAirport.charAt(0) ) )
 					return true;	
@@ -85,14 +84,12 @@ public class Flight {
 	
 	// Are there any seats left?
 	public boolean hasSpace() {
-		if (seats > 0) {
-			return true;
-		}
+		if (seats > 0) { return true; }
 		
 		else return false;
 	}
 	
-	// Add a newly issued ticket to the flight
+	// Add a newly issued ticket to the flight, as long as the flight is not at capacity
 	public void addTicket(Ticket t) {	
 		
 		if (hasSpace() ) {
@@ -103,11 +100,6 @@ public class Flight {
 		}
 		
 		else System.out.println("Sorry, this flight has reached its maximum seating, please choose another flight");
-	}
-	
-	// Does the flight already hold a particular ticket?
-	public boolean holdsTicket(Ticket ticket) { // TODO make a richer return value
-		return true;
 	}
 	
 	// Remove a canceled ticket from the flight

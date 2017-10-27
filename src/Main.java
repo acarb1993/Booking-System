@@ -20,7 +20,7 @@ public class Main {
 		double kenTimes[] = new double[16];
 		double laguTimes[] = new double[16];
 		
-		// Generates the time for the Kennedy flights
+		// Generates the time for the Kennedy flights from 6am to 10pm
 		for (int i = 0; i < kenTimes.length; i++) {
 			if (kenHour > 22) { kenHour = 5; }
 			
@@ -32,7 +32,7 @@ public class Main {
 			kenTimes[i] = flightTime;	
 		}
 		
-		// Generates the time for the Laguardia flights
+		// Generates the time for the Laguardia flights from 6am to 10pm
 		for (int i = 0; i < laguTimes.length; i++) {
 			if (laguHour > 22) { laguHour = 5; }
 			
@@ -44,7 +44,7 @@ public class Main {
 			laguTimes[i] = flightTime;
 		}
 		
-		int seats = 0, date = 1, index = 0, timeIndex = 0;
+		int seats = 0, date = 1, index = 0, timeIndex = 0; // time index is used to keep track of when to start a new date
 		
 		// Generates the seating and the flights themselves
 		do {
@@ -71,21 +71,31 @@ public class Main {
 		return airline;
 	}
 	
-	public static void generatePassengers(Airline airline) { // TODO finish passenger generation
+	/* Generates 10000 random passengers to fill in random flights,
+	 * as each flight fills up the price of the flight increases
+	 * if the flight does not have space, it will generate a new
+	 * random flight number for the passenger to book
+	 */
+	public static void generatePassengers(Airline airline) { 
 		ArrayList<Passenger> flightPassengers = new ArrayList<Passenger>();
 		
-		Random randomHour = new Random();
-		Random randomMinute = new Random();
-		Random randomDate = new Random();
+		Random randomFlight = new Random();
 		
-		
-		/*for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 10000; i++) {
 			Passenger dummy = new Passenger("Bobby", "Singer");
 			flightPassengers.add(dummy);
-			if (airline.getFlight(i).hasSpace() ) {
-
+			int flightNumber = randomFlight.nextInt(airline.getNumberOfFlights() );
+			
+			if( airline.getFlight(flightNumber).hasSpace() )
+				airline.book(flightPassengers.get(i), airline.getFlight(flightNumber) ); 
+			else {
+				while(!airline.getFlight(flightNumber).hasSpace() ) {
+					flightNumber = randomFlight.nextInt(airline.getNumberOfFlights() );
+					airline.book(flightPassengers.get(i), airline.getFlight(flightNumber) ); 
+				}
 			}
-		}*/
+			
+		}
 	}
 
 	
@@ -96,7 +106,7 @@ public class Main {
 		generateFlights(airline);
 		generatePassengers(airline);
 		
-		airline.showFlights();
+		//airline.showFlights();
 		
 		System.out.println("Ready to book your flights, enter your first name: ");
 		String firstName = keyboard.nextLine();
@@ -127,23 +137,24 @@ public class Main {
 				
 				// Cancels a flight for the user
 				if ( (answer == 'C') || (answer == 'c') ) {
-					System.out.println("Here are the flights you have booked"); 
+					System.out.println("Here are the flights you have booked: "); 
 					p.showTickets();
 					
 					System.out.println("Which ticket would you like to cancel?");
 					int ticketNumber = keyboard.nextInt();
-					Ticket ticket = new Ticket(ticketNumber);
-					p.cancel(ticket);
-					System.out.println("Ticket successfuly cancled!");
+					
+					airline.issueRefund(p.getTicket(ticketNumber));
+					p.cancel(p.getTicket(ticketNumber) );
+			
 					keyboard.nextLine();
 				}
 				
-				// Asks the user to find the flight they desire from Laguardia to Kennedy
+				// Asks the user to find the flight they desire from Kennedy to Laguardia
 				else if ( (answer == 'K') || (answer == 'k') ) {
 					System.out.println("Enter the day in October that you want to fly (In range from 1 - 31): ");
 					String day = keyboard.nextLine();
 					
-					System.out.println("Enter the hour you would like to fly (In range from 1 - 24): ");
+					System.out.println("Enter the hour you would like to fly (In range from 6 - 22): ");
 					double myHour = keyboard.nextDouble();
 					
 					airline.findFlights(day, myHour, "Kennedy");
@@ -161,9 +172,11 @@ public class Main {
 					
 					for (int i = 0; i < myMatchingFlights.size(); i++) {
 						if (flightInput == myMatchingFlights.get(i).getFlightNumber() ) {
-							p.bookFlight(p.getFirstName(), p.getLastName(), airline.getName(), myMatchingFlights.get(i) );
-							System.out.println("Successfully booked ticket!");
-							keyboard.nextLine();
+							if (myMatchingFlights.get(i).hasSpace() ) {
+								p.bookFlight(p.getFirstName(), p.getLastName(), airline.getName(), myMatchingFlights.get(i) );
+								System.out.println("Successfully booked ticket!");
+								keyboard.nextLine();
+							}
 						}
 					}
 				}
@@ -173,7 +186,7 @@ public class Main {
 					System.out.println("Enter the day in October that you want to fly (In range from 1 - 31): ");
 					String day = keyboard.nextLine();
 					
-					System.out.println("Enter the hour you would like to fly (In range from 1 - 24): ");
+					System.out.println("Enter the hour you would like to fly (In range from 6 - 22): ");
 					double myHour = keyboard.nextDouble();
 					
 					airline.findFlights(day, myHour, "Laguardia");
@@ -191,9 +204,11 @@ public class Main {
 					
 					for (int i = 0; i < myMatchingFlights.size(); i++) {
 						if (flightInput == myMatchingFlights.get(i).getFlightNumber() ) {
-							p.bookFlight(p.getFirstName(), p.getLastName(), airline.getName(), myMatchingFlights.get(i) );
-							System.out.println("Successfully booked ticket!");
-							keyboard.nextLine();
+							if (myMatchingFlights.get(i).hasSpace() ) {
+								p.bookFlight(p.getFirstName(), p.getLastName(), airline.getName(), myMatchingFlights.get(i) );
+								System.out.println("Successfully booked ticket!");
+								keyboard.nextLine();
+							}
 						}
 					}
 				}

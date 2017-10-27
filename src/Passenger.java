@@ -24,6 +24,10 @@ public class Passenger {
 	
 	public int getNumberOfTickets() { return numberOfTickets; }
 	
+	public Ticket getTicket(int index) {
+		return myTickets.get(index - 1);
+	}
+		
 	// Setter Functions------------------------------
 	public void setAddress(String a) { address = a; }
 	
@@ -34,16 +38,21 @@ public class Passenger {
 	// Shows all tickets a passenger has
 	public void showTickets() {
 		for (int i = 0; i < myTickets.size(); i++) {
-			System.out.println("Ticket Number " + myTickets.get(i).getTicketNumber() + " " + myTickets.get(i).getMyPassenger() + " booked on " + myTickets.get(i).getMyAirline() + ", flight number "
+			System.out.println( (i + 1) + " " + myTickets.get(i).getMyPassenger() 
+					+ " booked on " + myTickets.get(i).getMyAirline() + ", flight number "
 					+ myTickets.get(i).getMyFlight() + " on " + myTickets.get(i).getMyDate() + " at " 
-					+ myTickets.get(i).getMyTicketTime() + ", " + myTickets.get(i).getMyFlightDestination() );
+					+ myTickets.get(i).getMyTicketTime() + ", " + myTickets.get(i).getMyFlightDestination() 
+					+ " cost $" + myTickets.get(i).getTicketPrice() );
 		}
 	}
 	
 	// Cancels the passenger's ticket t
-	public void cancel(Ticket t) { // TODO actually cancel the ticket
+	public void cancel(Ticket t) { 
 		for (int i = 0; i < myTickets.size(); i++) {
-			if (t.getTicketNumber() == myTickets.get(i).getTicketNumber() ) myTickets.remove(i);
+			if (t.getTicketNumber() == myTickets.get(i).getTicketNumber() ) {
+				myTickets.get(i).cancel();
+				myTickets.remove(i);
+			}
 		}
 		numberOfTickets--;
 	}
@@ -51,7 +60,7 @@ public class Passenger {
 	/* Finds all flights for an airline on a particular date within 4 hours of a 
 	 * particular departure time from a particular city.
 	 */
-	public ArrayList<Flight> findFlights(Airline a, String date, double time, String from) { // TODO, Put flights in List
+	public ArrayList<Flight> findFlights(Airline a, String date, double time, String from) { 
 		ArrayList<Flight> matchingFlights = new ArrayList<Flight>();
 		
 		a.findFlights(date, time, from);
@@ -62,16 +71,11 @@ public class Passenger {
 	// Books a ticket for a particular flight (for the passenger)
 	public Ticket bookFlight(String firstName, String lastName, String airline, Flight f) {
 		
-		Ticket t = new Ticket();
+		Ticket t = new Ticket(f.getCost(), f.getDepartureTime(), airline, (firstName +  " " + lastName), 
+				f.getFlightNumber(), f.getDate()," from " + f.getOrigin() + " to " + f.getDestination() );
+		
 		f.addTicket(t);
 		myTickets.add(t);
-		
-		t.setMyPassenger(firstName, lastName);
-		t.setMyAirline(airline);
-		t.setMyFlight(f.getFlightNumber());
-		t.setMyDate(f.getDate() );
-		t.setMyTicketTime(f.getDepartureTime() );
-		t.setMyFlightDestination(f.getOrigin(), f.getDestination());
 		
 		return t;
 	}

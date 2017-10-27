@@ -11,9 +11,21 @@ public class Ticket {
 		ticketNumber = counter;
 	}
 	
-	public Ticket(int ticketNumber) {
-		this.ticketNumber = ticketNumber;
+	// Overloaded Constructor
+	public Ticket(double myPrice, double myTicketTime, String myAirline, String myPassenger, int myFlightNumber, String myDate, String myFlightDestination) {
+		counter++;
+		ticketNumber = counter;
+		
+		this.myPrice = myPrice;
+		this.myTicketTime = myTicketTime;
+		this.myAirline = myAirline;
+		this.myPassenger = myPassenger;
+		myFlight = Integer.toString(myFlightNumber);
+		this.myDate = myDate;
+		this.myFlightDestination = myFlightDestination;
 	}
+	
+	public Ticket(int ticketNumber) { this.ticketNumber = ticketNumber; }
 	
 	// Getter Methods-----------------------------------
 	public int getTicketNumber() { return ticketNumber; }
@@ -50,7 +62,11 @@ public class Ticket {
 	// Class Methods------
 	
 	// Cancels the ticket
-	public void cancel() { // TODO actually cancel the ticket
-		ticketNumber = 0;
+	public void cancel() { 
+		myPassenger = "";
+		myFlight = "";
+		myDate = "";
+		myFlightDestination = "";
+		myTicketTime = 0;
 	}
 }
