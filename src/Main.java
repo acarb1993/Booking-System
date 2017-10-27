@@ -7,6 +7,8 @@ import java.util.ArrayList;
  * system for a small airline that runs computer flights between two
  * cities on a daily basis. This project keeps tack of flights for the month
  * of October 2017.
+ * 
+ * Howdy Partner
  */
 
 public class Main {
