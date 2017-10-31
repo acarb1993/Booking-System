@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Passenger {
 	private String firstName, lastName, address, phone;
 	private ArrayList<Ticket> myTickets = new ArrayList<Ticket>();
-	private static int numberOfTickets;
+	private int numberOfTickets;
 	
 	// Default Constructor
 	public Passenger(String firstName, String lastName) {
@@ -74,6 +74,7 @@ public class Passenger {
 		
 		f.addTicket(t);
 		myTickets.add(t);
+		numberOfTickets++;
 		
 		return t;
 	}

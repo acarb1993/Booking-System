@@ -16,8 +16,8 @@ public class Flight {
 		this.destination = destination;
 		
 		date = "10/1/17";
+		flightNumber = counter % 32 + 1;
 		counter++;
-		flightNumber = counter;
 		filledSeats = 0;
 		price = 100;
 	}
@@ -48,7 +48,7 @@ public class Flight {
 	
 	// Setter Methods--------------------------------------------------
 	
-	// Sets the day in October
+	// Sets the day in October, and resets the flight numbers for the following day.
 	public void setDate(int d) {
 		String newDate = Integer.toString(d);
 		date = date.substring(0, 3) + newDate + (date.substring(4, 7) );

@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-/*
+/* 
  * The goal of this project is to create a simple simulation of a booking
  * system for a small airline that runs computer flights between two
  * cities on a daily basis. This project keeps tack of flights for the month
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Main {
 	
 	// Generates the flights for the airline taking an Airline as a parameter
-	public static Airline generateFlights(Airline airline) {
+	private static Airline generateFlights(Airline airline) {
 		Random randomSeats = new Random();
 		Random randomMinute = new Random();
 		
@@ -76,7 +76,7 @@ public class Main {
 	 * if the flight does not have space, it will generate a new
 	 * random flight number for the passenger to book
 	 */
-	public static void generatePassengers(Airline airline) { 
+	private static void generatePassengers(Airline airline) { 
 		ArrayList<Passenger> flightPassengers = new ArrayList<Passenger>();
 		
 		Random randomFlight = new Random();
@@ -136,27 +136,35 @@ public class Main {
 				
 				// Cancels a flight for the user
 				if ( (answer == 'C') || (answer == 'c') ) {
-					System.out.println("Here are the flights you have booked: "); 
-					p.showTickets();
+					if (p.getNumberOfTickets() == 0) {
+						System.out.println("You have not booked any tickets yet! ");
+						System.out.println();
+					}
 					
-					System.out.println("Which ticket would you like to cancel?");
-					int ticketNumber = keyboard.nextInt();
+					else {
 					
-					airline.issueRefund(p.getTicket(ticketNumber));
-					p.cancel(p.getTicket(ticketNumber) );
+						System.out.println("Here are the flights you have booked, select from 1 - " + p.getNumberOfTickets() + ": " ); 
+						p.showTickets();
+					
+						System.out.println("Which ticket would you like to cancel?");
+						int ticketNumber = keyboard.nextInt();
+					
+						airline.issueRefund(p.getTicket(ticketNumber));
+						p.cancel(p.getTicket(ticketNumber) );
 			
-					keyboard.nextLine();
+						keyboard.nextLine();
+					}
 				}
 				
 				// Asks the user to find the flight they desire from Kennedy to Laguardia
 				else if ( (answer == 'K') || (answer == 'k') ) {
 					System.out.println("Enter the day in October that you want to fly (In range from 1 - 31): ");
-					String day = keyboard.nextLine();
+					String myDay = keyboard.nextLine();
 					
 					System.out.println("Enter the hour you would like to fly (In range from 6 - 22): ");
 					double myHour = keyboard.nextDouble();
 					
-					airline.findFlights(day, myHour, "Kennedy");
+					airline.findFlights(myDay, myHour, "Kennedy");
 					ArrayList<Flight> myMatchingFlights = new ArrayList<Flight>();
 					for (int i = 0; i < airline.getMatchingFlights().size(); i++) {
 						myMatchingFlights.add(airline.getMatchingFlights().get(i) );
@@ -183,12 +191,12 @@ public class Main {
 				// Asks the user to find the flight they desire from Laguardia to Kennedy
 				else if ( (answer == 'L') || (answer == 'l') ) {
 					System.out.println("Enter the day in October that you want to fly (In range from 1 - 31): ");
-					String day = keyboard.nextLine();
+					String myDay = keyboard.nextLine();
 					
 					System.out.println("Enter the hour you would like to fly (In range from 6 - 22): ");
 					double myHour = keyboard.nextDouble();
 					
-					airline.findFlights(day, myHour, "Laguardia");
+					airline.findFlights(myDay, myHour, "Laguardia");
 					ArrayList<Flight> myMatchingFlights = new ArrayList<Flight>();
 					for (int i = 0; i < airline.getMatchingFlights().size(); i++) {
 						myMatchingFlights.add(airline.getMatchingFlights().get(i) );
